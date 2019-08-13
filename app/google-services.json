@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "389627100771",
+    "firebase_url": "https://face-features-1a191.firebaseio.com",
+    "project_id": "face-features-1a191",
+    "storage_bucket": "face-features-1a191.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389627100771:android:004a3fbd8a0ed333",
+        "android_client_info": {
+          "package_name": "vora.maanuj.facefeatures"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "389627100771-ovu68d74o4ivtaagnphfvh4572a654og.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuav8DyeTow2ePqPIEELL_HZ0visoJ1wU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "389627100771-ovu68d74o4ivtaagnphfvh4572a654og.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
