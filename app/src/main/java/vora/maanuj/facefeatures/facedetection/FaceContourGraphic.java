@@ -8,6 +8,7 @@ import android.util.TypedValue;
 import android.view.View;
 
 import com.google.android.gms.vision.face.Face;
+import com.google.firebase.ml.vision.common.FirebaseVisionPoint;
 import com.google.firebase.ml.vision.face.FirebaseVisionFace;
 import com.google.firebase.ml.vision.face.FirebaseVisionFaceContour;
 import com.google.firebase.ml.vision.face.FirebaseVisionFaceLandmark;
@@ -90,11 +91,16 @@ public class FaceContourGraphic extends GraphicOverlay.Graphic {
 //      canvas.drawCircle(px, py, FACE_POSITION_RADIUS, facePositionPaint);
 //    }
 
+
     for(int z = 0; z < contour.getPoints().size(); z++){
       if(z < 36) {
         if (z == 35) {
-          canvas.drawLine(translateX(contour.getPoints().get(z).getX()), translateY(contour.getPoints().get(z).getY()), translateX(contour.getPoints().get(0).getX()), translateY(contour.getPoints().get(0).getY()), idPaint);
-        } else {
+          canvas.drawLine(translateX(contour.getPoints().get(z).getX()), translateY(contour.getPoints().get(z).getY()), translateX(contour.getPoints().get(0).getX()), translateY(contour.getPoints().get(0).getY() + (contour.getPoints().get(0).getY() - contour.getPoints().get(32).getY())), idPaint);
+        }
+        else if(z == 0){
+          canvas.drawLine(translateX(contour.getPoints().get(z).getX()), translateY(contour.getPoints().get(z).getY() + (contour.getPoints().get(z).getY() - contour.getPoints().get(32).getY())), translateX(contour.getPoints().get(1).getX()), translateY(contour.getPoints().get(1).getY() + (contour.getPoints().get(1).getY() - contour.getPoints().get(32).getY())), idPaint);
+        }
+        else {
           canvas.drawLine(translateX(contour.getPoints().get(z).getX()), translateY(contour.getPoints().get(z).getY()), translateX(contour.getPoints().get(z + 1).getX()), translateY(contour.getPoints().get(z + 1).getY()), idPaint);
         }
       }
