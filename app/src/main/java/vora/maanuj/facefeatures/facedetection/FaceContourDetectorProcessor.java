@@ -1,5 +1,6 @@
 package vora.maanuj.facefeatures.facedetection;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +15,8 @@ import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetectorOptions;
 
 import java.io.IOException;
 import java.util.List;
+
+import vora.maanuj.facefeatures.common.CameraSource;
 import vora.maanuj.facefeatures.common.GraphicOverlay;
 
 import vora.maanuj.facefeatures.VisionProcessorBase;
@@ -28,8 +31,10 @@ public class FaceContourDetectorProcessor extends VisionProcessorBase<List<Fireb
     private static final String TAG = "FaceContourDetectorProc";
 
     private final FirebaseVisionFaceDetector detector;
+    private Context mContext;
+    private CameraSource cameraSource = null;
 
-    public FaceContourDetectorProcessor() {
+    public FaceContourDetectorProcessor(Context context, CameraSource cameraSource) {
         FirebaseVisionFaceDetectorOptions options =
                 new FirebaseVisionFaceDetectorOptions.Builder()
                         .setPerformanceMode(FirebaseVisionFaceDetectorOptions.FAST)
@@ -37,6 +42,8 @@ public class FaceContourDetectorProcessor extends VisionProcessorBase<List<Fireb
                         .build();
 
         detector = FirebaseVision.getInstance().getVisionFaceDetector(options);
+        mContext= context;
+        this.cameraSource=cameraSource;
     }
 
     @Override
@@ -66,7 +73,7 @@ public class FaceContourDetectorProcessor extends VisionProcessorBase<List<Fireb
         }
         for (int i = 0; i < faces.size(); ++i) {
             FirebaseVisionFace face = faces.get(i);
-            FaceContourGraphic faceGraphic = new FaceContourGraphic(graphicOverlay, face);
+            FaceContourGraphic faceGraphic = new FaceContourGraphic(graphicOverlay, face,mContext,cameraSource);
             graphicOverlay.add(faceGraphic);
         }
         graphicOverlay.postInvalidate();

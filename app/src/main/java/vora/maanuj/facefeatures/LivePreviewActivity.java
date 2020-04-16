@@ -50,12 +50,14 @@ public final class LivePreviewActivity extends AppCompatActivity
     private CameraSourcePreview preview;
     private GraphicOverlay graphicOverlay;
     private String selectedModel = FACE_CONTOUR;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate");
         setContentView(R.layout.activity_live_preview);
+        context=getApplicationContext();
 
         preview = findViewById(R.id.firePreview);
         if (preview == null) {
@@ -141,7 +143,7 @@ public final class LivePreviewActivity extends AppCompatActivity
                     break;
                 case FACE_CONTOUR:
                     Log.i(TAG, "Using Face Contour Detector Processor");
-                    cameraSource.setMachineLearningFrameProcessor(new FaceContourDetectorProcessor());
+                    cameraSource.setMachineLearningFrameProcessor(new FaceContourDetectorProcessor(context,cameraSource));
                     break;
                 default:
                     Log.e(TAG, "Unknown model: " + model);
